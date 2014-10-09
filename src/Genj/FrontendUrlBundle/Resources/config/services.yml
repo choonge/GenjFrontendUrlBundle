@@ -1,0 +1,27 @@
+parameters:
+    genj_frontend_url.routing.frontend.route_collection.class: Genj\FrontendUrlBundle\Routing\Frontend\RouteCollection
+    genj_frontend_url.routing.frontend.generator.url_generator.class: Genj\FrontendUrlBundle\Routing\Frontend\Generator\UrlGenerator
+
+services:
+    genj_frontend_url.routing.frontend.route_collection:
+        class: %genj_frontend_url.routing.frontend.route_collection.class%
+        arguments:
+            - @service_container
+
+    genj_frontend_url.routing.frontend.router_context:
+        factory_service: router
+        factory_method: getContext
+        class: Symfony\Bundle\FrameworkBundle\Routing\Router
+
+    genj_frontend_url.routing.frontend.generator.url_generator:
+        class: %genj_frontend_url.routing.frontend.generator.url_generator.class%
+        arguments:
+            - @genj_frontend_url.routing.frontend.route_collection
+            - @genj_frontend_url.routing.frontend.router_context
+            - @logger
+
+    genj_frontend_url.twig.genj_frontend_url_extension:
+        class: Genj\FrontendUrlBundle\Twig\GenjFrontendUrlExtension
+        arguments: [ @service_container ]
+        tags:
+            - { name: twig.extension }
