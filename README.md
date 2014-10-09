@@ -51,7 +51,7 @@ $frontendUrl  = $urlGenerator->generateFrontendUrlForObject($object);
 It is possible to generate a URL to a 'preview controller'. You could e.g. restrict access to that controller and show non-cached versions of certain pages. If you do:
 
 ```
-$frontendUrl  = $urlGenerator->generateFrontendUrlForObject($object);
+$frontendUrl  = $urlGenerator->generateFrontendUrlForObject($object, true);
 ```
 
 Then the resulting URL would become /preview.php/path/to/page.
