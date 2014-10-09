@@ -21,11 +21,11 @@ Provides helpers to generate frontend URLs. Your Entities need these methods in 
 
 ## Configuration
 
-You must set the name of your frontend environment (e.g. 'ng', 'quest', ...) in config.yml:
+You must set the name of your frontend environment in config.yml:
 
 ```
 genj_frontend_url:
-    frontend_environment: dv
+    frontend_environment: my_frontend_app
 ```
 
 
