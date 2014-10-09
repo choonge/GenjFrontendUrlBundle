@@ -35,9 +35,31 @@ genj_frontend_url:
 
 From twig:
 
-	{{ object|genj_url_for_frontend }}
+```
+{{ object|genj_url_for_frontend }}
+```
 	
 From PHP:
 
-        $urlGenerator = $this->container->get('genj_url_generator.routing.frontend.generator.url_generator');
-        $frontendUrl  = $urlGenerator->generateFrontendUrlForObject($object, $preview);
+```
+$urlGenerator = $this->container->get('genj_url_generator.routing.frontend.generator.url_generator');
+$frontendUrl  = $urlGenerator->generateFrontendUrlForObject($object);
+```
+
+### Preview parameter
+
+It is possible to generate a URL to a 'preview controller'. You could e.g. restrict access to that controller and show non-cached versions of certain pages. If you do:
+
+```
+$frontendUrl  = $urlGenerator->generateFrontendUrlForObject($object);
+```
+
+Then the resulting URL would become /preview.php/path/to/page.
+
+You can use the same thing from Twig too:
+
+```
+{{ object|genj_url_for_frontend(true) }}
+```
+
+More about environments: http://symfony.com/doc/current/cookbook/configuration/environments.html
