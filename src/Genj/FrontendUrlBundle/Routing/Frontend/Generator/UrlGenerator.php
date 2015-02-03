@@ -59,7 +59,7 @@ class UrlGenerator extends BaseUrlGenerator
     }
 
     /**
-     * Prepends 'www.' to the base domain name. If it's a preview url, 'static.' is prepended instead, since we want
+     * Prepends 'www.' to the base domain name. If it's a preview url, 'upload.' is prepended instead, since we want
      * the preview to always show on the first server.
      *
      * @param string $url
@@ -75,7 +75,7 @@ class UrlGenerator extends BaseUrlGenerator
 
         // Prepend www or static
         if ($preview === true) {
-            $modifiedHost = 'static.' . $modifiedHost;
+            $modifiedHost = 'upload.' . $modifiedHost;
         } else {
             $modifiedHost = 'www.' . $modifiedHost;
         }
