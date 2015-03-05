@@ -37,13 +37,14 @@ class GenjFrontendUrlExtension extends \Twig_Extension
      *
      * @param \stdClass $object
      * @param bool      $preview
+     * @param bool      $absolute Whether or not to create an absolute url
      *
      * @return null|string
      */
-    public function generateFrontendUrl($object, $preview = true)
+    public function generateFrontendUrl($object, $preview = true, $absolute = true)
     {
         $urlGenerator = $this->container->get('genj_frontend_url.routing.frontend.generator.url_generator');
-        $frontendUrl  = $urlGenerator->generateFrontendUrlForObject($object, $preview);
+        $frontendUrl  = $urlGenerator->generateFrontendUrlForObject($object, $preview, $absolute);
 
         return $frontendUrl;
     }

@@ -14,10 +14,11 @@ class UrlGenerator extends BaseUrlGenerator
     /**
      * @param \stdClass $object
      * @param bool      $preview
+     * @param bool   $absolute   Whether or not to create an absolute url
      *
      * @return null|string
      */
-    public function generateFrontendUrlForObject($object, $preview = false)
+    public function generateFrontendUrlForObject($object, $preview = false, $absolute = true)
     {
         $frontendUrl     = null;
         $routeName       = null;
@@ -32,7 +33,7 @@ class UrlGenerator extends BaseUrlGenerator
         }
 
         if ($routeName && $routeParameters) {
-            $frontendUrl = $this->generateFrontendUrl($routeName, $routeParameters, $preview);
+            $frontendUrl = $this->generateFrontendUrl($routeName, $routeParameters, $preview, $absolute);
         }
 
         return $frontendUrl;
@@ -42,16 +43,23 @@ class UrlGenerator extends BaseUrlGenerator
      * @param string $name       The name of the route
      * @param mixed  $parameters An array of parameters
      * @param bool   $preview    Whether or not to link to the preview environment. True by default.
+     * @param bool   $absolute   Whether or not to create an absolute url
      *
      * @return null|string
      */
-    public function generateFrontendUrl($name, $parameters = array(), $preview = false)
+    public function generateFrontendUrl($name, $parameters = array(), $preview = false, $absolute = true)
     {
-        $url = parent::generate($name, $parameters, self::ABSOLUTE_URL);
+        $referenceType = self::ABSOLUTE_URL;
+
+        if (!$absolute) {
+            $referenceType = self::ABSOLUTE_PATH;
+        }
+
+        $url = parent::generate($name, $parameters, $referenceType);
         $url = $this->modifyPath($url, $preview);
 
         // If no host was explicitly specified for the route, we determine it ourselves
-        if (!$this->routes->get($name)->getHost()) {
+        if (!$this->routes->get($name)->getHost() && $absolute) {
             $url = $this->modifyHost($url, $preview);
         }
 
