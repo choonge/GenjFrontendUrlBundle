@@ -107,6 +107,7 @@ class UrlGenerator extends BaseUrlGenerator
     {
         $originalPath = parse_url($url, PHP_URL_PATH);
         $modifiedPath = preg_replace('/^(?:\/admin)/', '', $originalPath, 1);
+        $modifiedPath = preg_replace('/^(?:\/preview.php)/', '', $modifiedPath, 1);
 
         if ($preview === true) {
             $modifiedPath = preg_replace('/^(?:\/dev.php)/', '', $modifiedPath, 1);
