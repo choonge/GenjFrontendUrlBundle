@@ -1,8 +1,8 @@
 {
     "name":        "genj/frontend-url-bundle",
     "type":        "symfony-bundle",
-    "description": "Symfony Frontend Url bundle",
-    "keywords":    ["genj", "frontend", "routing", "url", "generator", "symfony", "bundle"],
+    "description": "Symfony Frontend Url bundle - Provides helpers to easily generate URLs for frontend routes from within an admin environment.",
+    "keywords":    ["php", "symfony", "bundle", "symfony-bundle", "genj", "frontend", "routing", "url", "generator"],
     "license":     "MIT",
 
     "authors": [
