@@ -49,7 +49,7 @@ class UrlGenerator extends BaseUrlGenerator
      */
     public function generateFrontendUrl($name, $parameters = array(), $preview = false, $absolute = true)
     {
-        $referenceType = self::NETWORK_PATH;
+        $referenceType = self::ABSOLUTE_URL;
 
         if (!$absolute) {
             $referenceType = self::ABSOLUTE_PATH;
